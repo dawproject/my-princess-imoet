@@ -1133,47 +1133,32 @@ body.day-mode .reminder-info {
   color: #fff;
 }
 
-/* ==========================================
-   FIX TAMPILAN KHUSUS LAYAR HP (MOBILE FIX)
-   ========================================== */
-@media (max-width: 600px) {
-  /* 1. Atur container utama biar gak melebar keluar layar */
-  body {
-    overflow-x: hidden;
-  }
-
-  /* 2. Fix Widget Status biar teks gak tabrakan */
-  .status-widget, [class*="status"] {
-    width: 90% !important;
-    font-size: 12px !important;
-    padding: 8px 12px !important;
-    line-height: 1.3 !important;
-  }
-
-  /* 3. Fix Layout Card Foto & Journal biar pas sejajar */
-  .grid-container, .card-container {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    width: 95% !important;
-    margin: 0 auto !important;
-  }
-
-  .card, .photo-card, .journal-card {
-    max-width: 45% !important;
+/* FIX HP TOTAL - OVERRIDE ALL */
+@media screen and (max-width: 768px) {
+  /* Fix widget status atas biar ga tumpuk */
+  .status-card, .status-widget, div[class*="status"] {
     height: auto !important;
+    min-height: 80px !important;
+    padding: 10px !important;
+  }
+  
+  .status-card p, .status-widget p {
+    margin-top: 15px !important;
+    line-height: 1.4 !important;
+    word-break: break-word !important;
   }
 
-  /* 4. Fix Music Player bawah biar ga terlalu lebar */
-  .music-player, [class*="player"] {
+  /* Fix judul 'Favorite Human' & 'Lian's Journal' biar sejajar rapi */
+  .card h3, .card p, .photo-card span, div[class*="journal"] p {
+    font-size: 13px !important;
+    text-align: center !important;
+  }
+
+  /* Fix Music Player Bawah */
+  .music-player, div[class*="player"] {
+    bottom: 20px !important;
     width: 90% !important;
-    padding: 8px 12px !important;
-    font-size: 11px !important;
-  }
-
-  .music-player img {
-    width: 35px !important;
-    height: 35px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 }
