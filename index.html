@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Lian</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="night-mode">
+
+  <!-- OVERLAY ENTRY GATE -->
+  <div id="dateGateOverlay" class="gate-overlay">
+    <div class="gate-card">
+      <span class="gate-badge">Ticket Masuk</span>
+      <h2>Gimana harimu hari ini?</h2>
+      <p class="gate-sub">Isi dulu buat buka kuncinya</p>
+
+      <div class="gate-inputs">
+        <label for="moodInput">Mood / perasaan kamu hari ini: <span style="color: #ff4757;">*</span></label>
+        <input type="text" id="moodInput" class="gate-input" placeholder="Misal: Capek banget / Lagi seneng..." required>
+
+        <label for="topicInput">Malam ini mau bahas apa? <span style="color: #ff4757;">*</span></label>
+        <input type="text" id="topicInput" class="gate-input" placeholder="Misal: Cerita random / Deeptalk..." required>
+
+        <label for="noteInput">Pesan Kak Daw: <span style="color: #ff4757;">*</span></label>
+        <input type="text" id="noteInput" class="gate-input" placeholder="Misal: Terserahmu..." required>
+      </div>
+
+      <button id="unlockBtn" class="unlock-btn">Buka Kunci</button>
+      <p style="font-size: 0.65rem; opacity: 0.7; margin-top: 10px; font-style: italic;">
+        Pesan otomatis terkirim via WhatsApp
+      </p>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="desk-container">
+    <header class="desk-header">
+
+      <div class="digital-clock">
+        <span id="clockTime" class="clock-time">00:00</span>
+        <span id="clockDate" class="clock-date">Mon, 1 Jan</span>
+      </div>
+
+      <div class="lamp-toggle" id="lampToggle" title="Klik buat ganti suasana">
+        <span class="lamp-icon">🌙</span>
+        <span class="lamp-text">Mode Malam</span>
+      </div>
+    </header>
+
+    <!-- Papan Meja Utama -->
+    <main class="virtual-desk">
+
+      <!-- WIDGET MOOD STATUS -->
+      <div class="desk-item date-reminder-card" id="openDateModal" style="cursor: pointer;">
+        <div class="reminder-icon">💬</div>
+        <div class="reminder-info">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="reminder-label">Today's Status</span>
+            <span style="font-size: 0.58rem; opacity: 0.6; margin-left: 6px;">(Edit)</span>
+          </div>
+          <span id="savedMoodText" class="reminder-date">Belum diisi</span>
+          <span id="savedTopicText" class="reminder-activity">Topik chat</span>
+          <span id="savedNoteText" class="reminder-location" style="font-size: 0.68rem; opacity: 0.75; margin-top: 2px;">-</span>
+        </div>
+      </div>
+      
+      <div class="photo-card-frame">
+        <!-- Area Foto dengan efek Buku -->
+        <div class="book-container" id="photoBook">
+          <div class="book-page active"><img src="./assets/img/foto1.jpeg" alt="Foto 1"></div>
+          <div class="book-page"><img src="./assets/img/foto2.jpeg" alt="Foto 2"></div>
+          <div class="book-page"><img src="./assets/img/foto3.jpeg" alt="Foto 3"></div>
+          <div class="book-page"><img src="./assets/img/foto4.jpeg" alt="Foto 4"></div>
+          <div class="book-page"><img src="./assets/img/foto5.jpeg" alt="Foto 5"></div>
+          <div class="book-page"><img src="./assets/img/foto14.jpeg" alt="Foto 14"></div>
+        </div>
+
+        <p class="frame-label">Favorite Human</p>
+      </div>
+
+      <!-- ITEM 2: Buku Harian / Note -->
+      <div class="desk-item notebook" id="openNotebook">
+        <div class="notebook-cover">
+          <span class="notebook-title">Lian's Journal</span>
+          <p class="click-hint">(Klik untuk buka)</p>
+        </div>
+      </div>
+
+      <!-- ITEM 3: Cangkir Minuman Beruap -->
+      <div class="desk-item coffee-cup">
+        <div class="steam-container">
+          <div class="steam steam1"></div>
+          <div class="steam steam2"></div>
+        </div>
+        <div class="cup-body">☕</div>
+      </div>
+
+      <!-- WIDGET KUNCI RAHASIA (Di area merah) -->
+      <div class="secret-widget">
+        <div class="secret-key" id="secretKeyBtn" title="Ada rahasia di sini...">
+          🔑 <span class="sparkle">✨</span>
+        </div>
+      </div>
+
+      <!-- ITEM 4: Pemutar Musik Playlist ala Spotify -->
+      <div class="desk-item mini-player">
+        <audio id="audioPlayer" src=""></audio>
+        
+        <div class="player-top">
+          <!-- Album Cover Lagu -->
+          <img id="albumCover" class="album-cover" src="" alt="Album Cover">
+
+          <!-- Equalizer Ritme Musik -->
+          <div class="music-wave" id="musicWave">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          
+          <div class="song-info">
+            <span class="song-title" id="songTitle">Judul Lagu</span>
+            <span class="artist-name" id="artistName">Penyanyi</span>
+          </div>
+
+          <!-- Tombol Kontrol & Menu Playlist -->
+          <div class="player-controls">
+            <button class="control-btn" id="prevBtn" title="Sebelumnya">⏮</button>
+            <button class="play-btn" id="playBtn">▶</button>
+            <button class="control-btn" id="nextBtn" title="Selanjutnya">⏭</button>
+            <!-- Tombol List Playlist -->
+            <button class="control-btn playlist-toggle-btn" id="playlistToggleBtn" title="Daftar Lagu">☰</button>
+          </div>
+        </div>
+
+        <!-- Progress Bar & Durasi -->
+        <div class="player-progress-container">
+          <div class="progress-bar-bg" id="progressBarBg">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+          </div>
+          <div class="time-info">
+            <span id="currentTime">0:00</span>
+            <span id="durationTime">0:00</span>
+          </div>
+        </div>
+
+        <!-- DROPDOWN LIST PLAYLIST (MUNCUL PAS DIKLIK) -->
+        <div class="playlist-dropdown" id="playlistDropdown">
+          <ul id="playlistItems"></ul>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL 1: BUKU HARIAN / JOURNAL -->
+  <div class="modal-overlay" id="journalModal">
+    <div class="journal-paper">
+      <button class="close-modal" id="closeJournal">&times;</button>
+      <h2 class="paper-title">Special Space</h2>
+      <hr class="paper-line">
+      <div class="paper-content">
+        <p>Halooo liann... suka gaa aku buatin kek gini yaa aku minta pendapatmu juga katanya kamu baru pertamakali dapet kek gini makannya aku buatin juga effort serius buat kamu, ini bukan berlebihan ini cuma sederhana hal yang bisa aku kasih ke kamu, karna aku tau beberapa mungkin kamu udah terima sebelumnya dan mungkin buat yang ini kamu belum atau udah, intinya aku minta pendapatmu yaa, oiya btw semua web ini bisa di pencet yaa jadi coba coba wkwk</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: EDIT MOOD -->
+  <div id="editDateModal" class="modal-overlay">
+    <div class="journal-paper" style="max-width: 320px; text-align: center;">
+      <button id="closeDateModal" class="close-modal">&times;</button>
+      <h3 style="font-size: 1.1rem; color: #ff758c; margin-bottom: 8px;">Update Status</h3>
+      <p style="font-size: 0.75rem; opacity: 0.8; margin-bottom: 14px;">Mau ganti mood atau topik malam ini?</p>
+      
+      <div class="gate-inputs" style="margin-bottom: 15px;">
+        <label for="editMoodInput">Mood Baru:</label>
+        <input type="text" id="editMoodInput" class="gate-input" placeholder="Mood kamu...">
+
+        <label for="editTopicInput" style="margin-top: 8px;">Topik Baru:</label>
+        <input type="text" id="editTopicInput" class="gate-input" placeholder="Topik obrolan...">
+
+        <label for="editNoteInput" style="margin-top: 8px;">Pesan Baru:</label>
+        <input type="text" id="editNoteInput" class="gate-input" placeholder="Pesan buat aku lian...">
+      </div>
+
+      <button id="updateDateBtn" class="unlock-btn">Update & Kirim WA</button>
+    </div>
+  </div>
+
+  <!-- MODAL SURPRISE (Di luar container utama agar overlay center rapi) -->
+    <div class="surprise-modal-overlay" id="surpriseModal">
+      <div class="surprise-modal-card">
+        <button class="close-modal-btn" id="closeModalBtn">✕</button>
+
+        <!-- STEP 1: INPUT PASSWORD -->
+        <div class="modal-step active" id="modalStep1">
+          <div class="surprise-icon">🔒</div>
+          <h2>Kunci Rahasia Terkunci!</h2>
+          <p>Masukin password buat buka rahasia di dalam sini. Belum punya kodenya?</p>
+          
+          <!-- Input Password -->
+          <div class="pass-input-group">
+            <input type="password" id="passInput" placeholder="Ketik password di sini..." autocomplete="off" />
+            <button id="unlockSecretBtn">Buka 🔓</button>
+          </div>
+          <p id="errorMsg" class="error-msg"></p>
+
+          <div class="divider"><span>atau</span></div>
+
+          <!-- Button Redirect ke WA -->
+          <button class="wa-request-btn" id="waRequestBtn">
+            💬 Minta Password via WA
+          </button>
+        </div>
+
+        <!-- STEP 2: PESAN SPESIAL (BOOM SURPRISE!) -->
+        <div class="modal-step" id="modalStep2">
+          <div class="surprise-icon">🎉✨</div>
+          <h2>BOOM! Rahasia Terbuka! 💖</h2>
+          
+          <!-- KONTAINER PESAN DENGAN OVERLAY BUNGA -->
+          <div class="message-wrapper">
+            <!-- Gambar bunga yang bakal menutupi & muter mekar -->
+            <img id="bloomingFlower" src="images/flower1.png" alt="Flower" class="blooming-flower" />
+            
+            <div class="special-message">
+              "Makasih ya udah mau repot-repot minta kodenya ke aku wkwk meskipun agak aneh, oiya satu hal yang perlu aku ucapin lagi kamu itu pantes dan layak buat diusahakan jadi jangan insecure, aku buat web ini ke kamu hampir seminggu karna aku takut jelek webnya jadi aku buatin yang terbaik, ini engga berlebihan btw karna emang kamu sepantes itu buat dapetin hal ini dari aku apalagi ini bakat yang bisa aku tunjukin ke kamu, selebihnya aku ga nunjukin ke yang lain, dan ini juga khusus buatmu, kalau jelek maaf yaa"
+            </div>
+          </div>
+
+          <button class="finish-btn" id="finishSurpriseBtn">
+            Surat Rahasia
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: MODAL AMPLOP SURAT (DITARUH LANGSUNG DI BAWAHNYA) -->
+    <div class="surprise-modal-overlay" id="thankYouLetterModal" style="display: none;">
+      <div class="envelope-wrapper">
+        <!-- Amplop Interaktif -->
+        <div class="envelope" id="envelope">
+          <div class="flap"></div>
+          <div class="pocket"></div>
+          
+          <!-- Kertas Surat di Dalam Amplop -->
+          <div class="letter">
+            <div class="letter-content">
+              <h3>💌 Pesan Rahasia</h3>
+              <p id="letterText"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Tutup Surat -->
+        <button id="closeLetterBtn" class="close-letter-btn" style="display: none;">Tutup Surat</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
