@@ -1133,32 +1133,52 @@ body.day-mode .reminder-info {
   color: #fff;
 }
 
-/* FIX HP TOTAL - OVERRIDE ALL */
+/* ==========================================
+   PERBAIKAN TAMPILAN HP (MOBILE LAYOUT FIX)
+   ========================================== */
 @media screen and (max-width: 768px) {
-  /* Fix widget status atas biar ga tumpuk */
-  .status-card, .status-widget, div[class*="status"] {
-    height: auto !important;
-    min-height: 80px !important;
+  /* Bikin kontainer utama pas di layar HP */
+  .desk-container {
+    width: 95% !important;
+    max-width: 360px !important;
     padding: 10px !important;
+  }
+
+  /* Fix Status Card & Widget Bikin Memanjang Rapi */
+  .status-card, .status-widget, div[class*="status"] {
+    grid-column: span 2 !important;
+    height: auto !important;
+    min-height: max-content !important;
+    padding: 10px 12px !important;
   }
   
   .status-card p, .status-widget p {
-    margin-top: 15px !important;
-    line-height: 1.4 !important;
+    margin-top: 4px !important;
+    line-height: 1.3 !important;
     word-break: break-word !important;
+    font-size: 0.8rem !important;
   }
 
-  /* Fix judul 'Favorite Human' & 'Lian's Journal' biar sejajar rapi */
+  /* Fix Text Judul */
   .card h3, .card p, .photo-card span, div[class*="journal"] p {
     font-size: 13px !important;
     text-align: center !important;
   }
 
-  /* Fix Music Player Bawah */
-  .music-player, div[class*="player"] {
-    bottom: 20px !important;
-    width: 90% !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+  /* Fix Music Player Agar Teratur di Grid */
+  .mini-player, div[class*="player"] {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    grid-column: span 2 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Album Art Tidak Terpotong */
+  .album-cover {
+    width: 38px !important;
+    height: 38px !important;
   }
 }
