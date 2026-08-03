@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------
   // 5. KUNCI RAHASIA & ANIMASI BURST + HUJAN EMOJI
   // ------------------------------------------
-  const SECRET_PASSWORD = "kamuistimewa"; 
+  const SECRET_PASSWORD = "theonlyone"; 
   const MY_PHONE_NUMBER = "6285168821267"; 
   let flowerAnimationFrame = null;
 

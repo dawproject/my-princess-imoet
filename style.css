@@ -1045,14 +1045,16 @@ body.day-mode .reminder-info {
   z-index: 1;
 }
 
+/* GANTI BAGIAN INI DI STYLE.CSS */
 .envelope.open .letter {
-  /* Dorong kertas naik penuh ke atas sejauh tinggi teksnya */
-  transform: translateY(-100%) translateY(90px) !important; 
+  /* Pakai pixel tetap (misal -140px), JANGAN pakai -100% */
+  transform: translateY(-140px) !important; 
   
-  /* Biar tinggi kertas ngikutin panjang teks otomatis */
+  /* Atur tinggi maksimal & berikan scroll internal biar gak kebablasan naik */
+  max-height: 280px !important; 
+  overflow-y: auto !important; 
   height: auto !important; 
   
-  /* Bawa ke depan kantong amplop (.pocket z-index: 3) */
   z-index: 5 !important; 
 }
 
